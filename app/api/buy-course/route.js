@@ -1,5 +1,5 @@
 // app/api/buy-course/route.js
-import connectToDatabase from '../../lib/mongodb';
+import {connectToDatabase} from '../../lib/mongodb';
 import UserCourse from '../../model/UserCourse';
 import { auth } from '@clerk/nextjs/server';
 
