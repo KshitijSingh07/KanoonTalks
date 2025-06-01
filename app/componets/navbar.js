@@ -234,7 +234,7 @@ export default function Navbar() {
           <ul className="flex flex-col items-start px-4 space-y-4 text-dropdown-text text-lg py-2">
             {role === "admin" && (
               <li>
-                <Link href="/admin" onClick={toggleMobileMenu}>
+                <Link href="/admin/dashboard" onClick={toggleMobileMenu}>
                   Admin
                 </Link>
               </li>
