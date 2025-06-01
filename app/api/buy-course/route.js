@@ -1,5 +1,5 @@
 // app/api/buy-course/route.js
-import connectDB from '../../lib/mongodb';
+import {connectToDatabase} from '../../lib/mongodb';
 import UserCourse from '../../model/UserCourse';
 import { auth } from '@clerk/nextjs/server';
 
@@ -10,7 +10,7 @@ export async function POST(request) {
   const { courseId } = await request.json();
   if (!courseId) return new Response(JSON.stringify({ error: 'Course ID required' }), { status: 400 });
 
-  await connectDB();
+  await connectToDatabase();
 
   const existing = await UserCourse.findOne({ userId, courseId });
   if (existing) {
