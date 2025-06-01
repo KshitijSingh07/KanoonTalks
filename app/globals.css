@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/* --- CSS Variables for Pure Black/White Theming --- */
+
+:root {
+  /* Light Mode Colors */
+  --color-background: #ffffff; /* white */
+  --color-text: #000000;       /* black */
+  --color-card-bg: #ffffff;    /* white */
+  --color-card-text: #374151;  /* gray-700 */
+  --color-section-bg: #f3f4f6; /* gray-100 */
+  --color-primary-text: #000000;
+  --color-paragraph-text: #1f2937; /* gray-800 */
+  --color-light-bg: #ffffff;
+  --color-light-text: #374151;     /* gray-700 */
+  --color-dark-text: #1f2937;      /* gray-800 */
+  --color-blue-primary: #2563eb;   /* blue-600 */
+  --color-blue-secondary: #93c5fd; /* blue-300 */
+
+  /* Navbar Specific Colors - Light Mode */
+  --color-navbar-bg: #2563eb;      /* blue-600 */
+  --color-navbar-text: #ffffff;    /* white */
+  --color-navbar-hover-text: #bfdbfe; /* blue-200 */
+  --color-dropdown-bg: #ffffff;    /* white */
+  --color-dropdown-text: #1f2937;  /* gray-800 */
+  --color-dropdown-hover-bg: #f3f4f6; /* gray-100 */
+
+  /* Company Name Colors - Light Mode */
+  --color-company-name: #111827;      /* gray-900 */
+  --color-company-name-hover: #2563eb; /* blue-600 */
+
+  /* Final CTA Section Colors - Light Mode */
+  --color-cta-bg: #2563eb;          /* blue-600 */
+  --color-cta-text: #ffffff;        /* white */
+  --color-cta-button-bg: #ffffff;   /* white */
+  --color-cta-button-text: #2563eb; /* blue-600 */
+  --color-cta-button-hover-bg: #f3f4f6; /* gray-100 */
+
+  /* Footer Section Colors - Light Mode */
+  --color-footer-bg: #111827;       /* gray-900 */
+  --color-footer-text: #ffffff;     /* white */
+  --color-footer-link-text: #9ca3af; /* gray-400 */
+  --color-footer-link-hover-text: #ffffff;
+  --color-footer-copyright-text: #6b7280; /* gray-500 */
+}
+
+.dark {
+  /* Dark Mode Overrides */
+  --color-background: #0f172a;     /* gray-950 */
+  --color-text: #ffffff;
+  --color-card-bg: #1f2937;        /* gray-800 */
+  --color-card-text: #d1d5db;      /* gray-300 */
+  --color-section-bg: #111827;     /* gray-900 */
+  --color-primary-text: #ffffff;
+  --color-paragraph-text: #e5e7eb; /* gray-200 */
+  --color-light-bg: #374151;       /* gray-700 */
+  --color-light-text: #e5e7eb;     /* gray-200 */
+  --color-dark-text: #f3f4f6;      /* gray-100 */
+  --color-blue-primary: #1e40af;   /* blue-800 */
+  --color-blue-secondary: #60a5fa; /* blue-400 */
+
+  /* Navbar Specific Colors - Dark Mode */
+  --color-navbar-bg: #111827;      /* gray-900 */
+  --color-navbar-text: #e5e7eb;    /* gray-200 */
+  --color-navbar-hover-text: #60a5fa; /* blue-400 */
+  --color-dropdown-bg: #1f2937;    /* gray-800 */
+  --color-dropdown-text: #e5e7eb;  /* gray-200 */
+  --color-dropdown-hover-bg: #374151; /* gray-700 */
+
+  /* Company Name Colors - Dark Mode */
+  --color-company-name: #fbbf24;        /* amber-400 */
+  --color-company-name-hover: #fcd34d;  /* amber-300 */
+
+  /* Final CTA Section Colors - Dark Mode */
+  --color-cta-bg: #1e40af;         /* blue-800 */
+  --color-cta-text: #ffffff;
+  --color-cta-button-bg: #e5e7eb;  /* gray-200 */
+  --color-cta-button-text: #1e40af; /* blue-800 */
+  --color-cta-button-hover-bg: #d1d5db; /* gray-300 */
+
+  /* Footer Section Colors - Dark Mode */
+  --color-footer-bg: #000000;      /* black */
+  --color-footer-text: #f3f4f6;    /* gray-100 */
+  --color-footer-link-text: #9ca3af; /* gray-400 */
+  --color-footer-link-hover-text: #ffffff;
+  --color-footer-copyright-text: #4b5563; /* gray-600 */
+}
+
+/* Apply CSS variables to base elements for consistency and smooth transitions */
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions on other elements */
+h1, h2, h3, p, div, button, a {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
