@@ -38,7 +38,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{
+    layout: {
+      unsafe_disableDevelopmentModeWarnings: true,
+    },
+  }}>
       <html lang="en" className="dark">
         <head>
           <link
