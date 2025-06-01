@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { supabase } from '../../lib/supabaseClient';
+import Image from 'next/image';
 
 export default function AdminCreatePage() {
   const [title, setTitle] = useState('');
@@ -22,16 +23,17 @@ export default function AdminCreatePage() {
     return user.publicMetadata?.role === 'admin';
   };
 
-  useEffect(() => {
-    if (isLoaded) {
-      if (!user || !isAdmin()) {
-        alert('Access denied. Admins only.');
-        router.push('/admin/dashboard');
-      } else {
-        setLoading(false);
-      }
+ useEffect(() => {
+  if (isLoaded) {
+    if (!user || !isAdmin()) {
+      alert('Access denied. Admins only.');
+      router.push('/admin/dashboard');
+    } else {
+      setLoading(false);
     }
-  }, [user, isLoaded, router]);
+  }
+}, [user, isLoaded, router, isAdmin]);
+
 
   const uploadImage = async (file) => {
     if (!file) return null;
@@ -152,7 +154,7 @@ export default function AdminCreatePage() {
         </form>
 
         <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center w-full">
-          <img
+          <Image
             src="/admin.svg"
             alt="Admin Illustration"
             className="w-full max-w-none drop-shadow-xl"

@@ -45,7 +45,7 @@ export default function AboutUs() {
 
             <h2 className="text-2xl font-semibold text-blue-600 pt-4">Get Involved</h2>
             <p>
-              Whether you're a student looking to publish your first article, a researcher sharing your work, or a practitioner sharing experience KanoonTalks welcomes you. Join us in building a richer legal knowledge base for all.
+              Whether you&apos;re a student looking to publish your first article, a researcher sharing your work, or a practitioner sharing experience KanoonTalks welcomes you. Join us in building a richer legal knowledge base for all.
             </p>
           </div>
         </div>
