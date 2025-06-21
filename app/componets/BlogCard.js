@@ -42,7 +42,7 @@ export default function BlogCard({ slug, title, excerpt, author, authorImage, im
 
         {/* Title and Excerpt */}
         <div className="flex-grow">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{title}</h2>
+          <h2 className="text-xl font-semibold  mb-2">{title}</h2>
           <p className="text-gray-700 dark:text-gray-600 mb-4 line-clamp-4">{excerpt}</p>
         </div>
 
