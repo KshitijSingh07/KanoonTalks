@@ -1,38 +1,76 @@
-// lib/mongodb.js
-import mongoose from 'mongoose';
+import { connectToDatabase } from "../../../lib/mongodb";
+import Post from "../../../model/post";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+// GET: Get a post by slug
+export async function GET(req, context) {
+  await connectToDatabase();
+  const { slug } = context.params;
 
-if (!MONGODB_URI) {
-  throw new Error("❌ Please define the MONGODB_URI environment variable");
-}
-
-let cached = global.mongoose;
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
-
-export async function connectToDatabase() {
-  if (cached.conn) return cached.conn;
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
-      bufferCommands: false,
-      serverSelectionTimeoutMS: 20000, // ⏳ Increased timeout
-      socketTimeoutMS: 45000, // 🔥 To prevent early disconnects
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+  const post = await Post.findOne({ slug });
+  if (!post) {
+    return new Response(JSON.stringify({ error: "Post not found" }), { status: 404 });
   }
 
+  return new Response(JSON.stringify(post), { status: 200 });
+}
+
+// PATCH: Update a post's status by slug
+export async function PATCH(req, contextPromise) {
   try {
-    cached.conn = await cached.promise;
-  } catch (error) {
-    console.error("❌ MongoDB connection error:", error);
-    cached.promise = null; // reset the promise if failed
-    throw error;
-  }
+    const context = await contextPromise; // await the context first
+    const { slug } = context.params;
+    const updateData = await req.json();
 
-  return cached.conn;
+    console.log("PATCH called with slug:", slug);
+
+    if (
+      updateData.status &&
+      !["approved", "rejected", "pending"].includes(updateData.status)
+    ) {
+      return new Response(
+        JSON.stringify({ error: "Invalid status value" }),
+        { status: 400 }
+      );
+    }
+
+    await connectToDatabase();
+    const post = await Post.findOneAndUpdate(
+      { slug },
+      updateData,
+      { new: true }
+    );
+
+    if (!post) {
+      return new Response(JSON.stringify({ error: "Post not found" }), { status: 404 });
+    }
+
+    return new Response(
+      JSON.stringify({ message: "Post updated successfully", data: post }),
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("PATCH error:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
+  }
+}
+
+
+// DELETE: Delete a post by slug
+export async function DELETE(req, context) {
+  try {
+    await connectToDatabase();
+    const { slug } = context.params;
+
+    console.log("DELETE called with slug:", slug);
+
+    const deleted = await Post.findOneAndDelete({ slug });
+    if (!deleted) {
+      return new Response(JSON.stringify({ error: "Post not found" }), { status: 404 });
+    }
+
+    return new Response(JSON.stringify({ message: "Post deleted" }), { status: 200 });
+  } catch (error) {
+    console.error("DELETE error:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
+  }
 }
