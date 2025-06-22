@@ -1,10 +1,13 @@
 import { connectToDatabase } from "./mongodb";
 import Post from "../model/post";
 
+
+
 export async function getAllPosts() {
-  // Sirf approved posts fetch karo
+  await connectToDatabase(); // ✅ Ensure DB connection first
   return await Post.find({ status: 'approved' }).lean();
 }
+
 
 // Ab slug se post fetch karne ke liye function
 export const getPostBySlug = async (slug) => {
