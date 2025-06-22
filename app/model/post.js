@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import slugify from 'slugify';
+
 const postSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -25,13 +26,14 @@ const postSchema = new mongoose.Schema({
   },
 });
 
-postSchema.pre('save', function (next) {
-  if (this.isModified('title')) {
-    this.slug = slugify(this.title, { lower: true, strict: true });
-  }
-  next();
-});
+// Only attach middleware once (for hot-reload or serverless)
+if (!mongoose.models.Post) {
+  postSchema.pre('save', function (next) {
+    if (this.isModified('title')) {
+      this.slug = slugify(this.title, { lower: true, strict: true });
+    }
+    next();
+  });
+}
 
-const Post = mongoose.models.Post || mongoose.model('Post', postSchema);
-
-export default Post;
+export default mongoose.models.Post || mongoose.model('Post', postSchema);
