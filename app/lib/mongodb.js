@@ -7,6 +7,7 @@ if (!MONGODB_URI) {
   throw new Error("❌ Please define the MONGODB_URI environment variable");
 }
 
+// Global cache to prevent multiple connections in development
 let cached = global.mongoose;
 
 if (!cached) {
@@ -18,7 +19,9 @@ export async function connectToDatabase() {
 
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI, {
-     
+      bufferCommands: false, 
+      useNewUrlParser: true, 
+      useUnifiedTopology: true, 
     });
   }
 
