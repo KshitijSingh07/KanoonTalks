@@ -49,7 +49,7 @@ export default function Footer() {
           <h3 className="text-xl font-semibold">Follow Us</h3>
           <div className="flex justify-center md:justify-start space-x-6 text-2xl text-footer-link-text">
             {[
-              { href: '#', icon: 'fab fa-twitter', label: 'Twitter' },
+              { href: '#', icon: 'fab fa-x-twitter', label: 'Twitter' },
               { href: '#', icon: 'fab fa-linkedin', label: 'LinkedIn' },
               { href: '#', icon: 'fab fa-instagram', label: 'Instagram' },
             ].map((social) => (
