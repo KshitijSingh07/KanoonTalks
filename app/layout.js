@@ -39,12 +39,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider appearance={{
-    layout: {
-      unsafe_disableDevelopmentModeWarnings: true,
-    },
-  }}>
+      layout: {
+        unsafe_disableDevelopmentModeWarnings: true,
+      },
+    }}>
       <html lang="en" className="dark">
         <head>
+         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+        {/* Apple */}
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+        {/* Android Chrome */}
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+
+        {/* Theme */}
+        <meta name="theme-color" content="#ffffff" />
           <link
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
             rel="stylesheet"
@@ -55,9 +69,9 @@ export default function RootLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <Providers>
-          <Navbar />
-          {children}
-          <Footer />
+            <Navbar />
+            {children}
+            <Footer />
           </Providers>
         </body>
       </html>
