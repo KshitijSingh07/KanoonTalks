@@ -49,9 +49,9 @@ export default function Footer() {
           <h3 className="text-xl font-semibold">Follow Us</h3>
           <div className="flex justify-center md:justify-start space-x-6 text-2xl text-footer-link-text">
             {[
-              { href: '#', icon: 'fab fa-x-twitter', label: 'Twitter' },
-              { href: '#', icon: 'fab fa-linkedin', label: 'LinkedIn' },
-              { href: '#', icon: 'fab fa-instagram', label: 'Instagram' },
+              { href: 'https://x.com/KanoonTalks?t=apjfyeNhp8Wh-pyPxtAOVQ&s=08', icon: 'fab fa-x-twitter', label: 'Twitter' },
+              { href: 'https://t.me/kanoontalks', icon: 'fab fa-telegram', label: 'LinkedIn' },
+              { href: 'https://www.instagram.com/__kanoontalks?igsh=dzgzdTM5MDZrczJj', icon: 'fab fa-instagram', label: 'Instagram' },
             ].map((social) => (
               <motion.a
                 key={social.label}
